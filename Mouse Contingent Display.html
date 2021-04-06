@@ -31,12 +31,6 @@
 	  -webkit-backdrop-filter: blur(10px);
 	  backdrop-filter: blur(10px);
 	}
-	/* falback for browsers that dont have backdrop-filter */
-	@supports not ((backdrop-filter: blur(0px)) or (-webkit-backdrop-filter: blur(0px))) {
-	  #blur-around {
-		background-color: rgba(255,255,255,.8);
-	  }
-	}
 	.center {
 	  margin: 0;
 	  position: absolute;
@@ -52,11 +46,6 @@
 
 <body>
   <div id="blur-around"></div>
-<!--Display original calibration image-->
-  <div class="center">
-  <img id = "img" src="cal1.png" alt="Image did not display correctly. Email Kari." width="1024" height="768">
-  </div>
-
     <script type="text/javascript">//<![CDATA[
 	//make circular window with clip-path
 		function makeCircleHoleClipPathRule( radius ) {
