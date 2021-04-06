@@ -1,0 +1,119 @@
+<!DOCTYPE html> 
+<html> 
+<meta charset="utf-8"> 
+<body> 
+
+<!---<button onclick="getCurTime()" type="button">Get current time position</button><br>--->
+
+<video style="display:block; margin: 0 auto;" id="myVideo" width="1024" height="768" autoplay muted>
+  <source src="Legos.mp4" type="video/mp4" controls>
+  Your browser does not support HTML5 video.
+</video>
+
+<div>
+	<p id="currTime">Current time: 0 seconds</p>
+</div>
+
+<script>
+
+var vid = document.getElementById("myVideo");
+var curTime = vid.currentTime;
+
+function getCurTime() { 
+  document.getElementById("currTime").innerHTML = "Current time: " + vid.currentTime;
+} 
+
+parent.addEventListener('keyup', logKey);
+
+function logKey(e) {
+  if (e.keyCode == 32) {
+    getCurTime();
+	storeData();
+  }
+//  else if (e.keyCode == 78) {
+//	parent.finishHTML();
+//  }
+}
+
+// Stores some data and finishes HTML
+storeData = function () {
+   parent.addData("practiceSegTime", vid.currentTime);
+   parent.nextEntry();
+ }
+ 
+vid.onended = function() {
+  parent.finishHTML();
+};
+
+	//Detailed browser check
+		var nVer = navigator.appVersion;
+		var nAgt = navigator.userAgent;
+		var browserName  = navigator.appName;
+		var fullVersion  = ''+parseFloat(navigator.appVersion); 
+		var majorVersion = parseInt(navigator.appVersion,10);
+		var nameOffset,verOffset,ix;
+		// In Opera, the true version is after "Opera" or after "Version"
+		if ((verOffset=nAgt.indexOf("Opera"))!=-1) {
+		 browserName = "Opera";
+		 fullVersion = nAgt.substring(verOffset+6);
+		 if ((verOffset=nAgt.indexOf("Version"))!=-1) 
+		   fullVersion = nAgt.substring(verOffset+8);
+		}
+		// In MSIE, the true version is after "MSIE" in userAgent
+		else if ((verOffset=nAgt.indexOf("MSIE"))!=-1) {
+		 browserName = "Microsoft Internet Explorer";
+		 fullVersion = nAgt.substring(verOffset+5);
+		}
+		// In Chrome, the true version is after "Chrome" 
+		else if ((verOffset=nAgt.indexOf("Chrome"))!=-1) {
+		 browserName = "Chrome";
+		 fullVersion = nAgt.substring(verOffset+7);
+		}
+		// In Safari, the true version is after "Safari" or after "Version" 
+		else if ((verOffset=nAgt.indexOf("Safari"))!=-1) {
+		 browserName = "Safari";
+		 fullVersion = nAgt.substring(verOffset+7);
+		 if ((verOffset=nAgt.indexOf("Version"))!=-1) 
+		   fullVersion = nAgt.substring(verOffset+8);
+		}
+		// In Firefox, the true version is after "Firefox" 
+		else if ((verOffset=nAgt.indexOf("Firefox"))!=-1) {
+		 browserName = "Firefox";
+		 fullVersion = nAgt.substring(verOffset+8);
+		}
+		// In most other browsers, "name/version" is at the end of userAgent 
+		else if ( (nameOffset=nAgt.lastIndexOf(' ')+1) < 
+				  (verOffset=nAgt.lastIndexOf('/')) ) 
+		{
+		 browserName = nAgt.substring(nameOffset,verOffset);
+		 fullVersion = nAgt.substring(verOffset+1);
+		 if (browserName.toLowerCase()==browserName.toUpperCase()) {
+		  browserName = navigator.appName;
+		 }
+		}
+		// trim the fullVersion string at semicolon/space if present
+		if ((ix=fullVersion.indexOf(";"))!=-1)
+		   fullVersion=fullVersion.substring(0,ix);
+		if ((ix=fullVersion.indexOf(" "))!=-1)
+		   fullVersion=fullVersion.substring(0,ix);
+
+		majorVersion = parseInt(''+fullVersion,10);
+		if (isNaN(majorVersion)) {
+		 fullVersion  = ''+parseFloat(navigator.appVersion); 
+		 majorVersion = parseInt(navigator.appVersion,10);
+		}
+	//save screen size and browser information
+		parent.addData("screensizeX",window.screen.width);
+		parent.addData("screensizeY",window.screen.height);
+		parent.addData("Browser",browserName);
+		parent.addData("Version",fullVersion);
+
+
+</script> 
+
+</body> 
+</html>
+
+
+
+
