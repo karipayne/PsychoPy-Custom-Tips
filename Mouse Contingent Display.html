@@ -164,60 +164,6 @@
 		parent.addData("Browser",browserName);
 		parent.addData("Version",fullVersion);
 
-	//set calibration counter to 1
-		var cal = 1;
-
-	//on each click, save time (to match to location currently used by mousemove event)
-	//and display next calibration image
-		document.addEventListener("mousedown", e => {
-
-			if (cal == 1) {
-				parent.addData("CLICKTIME",Date.now() - start);
-				parent.nextEntry();
-				document.getElementById("img").src = img.src.replace("cal1.png", "cal2.png");
-			}
-			if (cal == 2) {
-				parent.addData("CLICKTIME",Date.now() - start);
-				parent.nextEntry();
-				document.getElementById("img").src = img.src.replace("cal2.png", "cal3.png");
-			}
-			if (cal == 3) {
-				parent.addData("CLICKTIME",Date.now() - start);
-				parent.nextEntry();
-				document.getElementById("img").src = img.src.replace("cal3.png", "cal4.png");
-			}
-			if (cal == 4) {
-				parent.addData("CLICKTIME",Date.now() - start);
-				parent.nextEntry();
-				document.getElementById("img").src = img.src.replace("cal4.png", "cal5.png");
-			}
-			if (cal == 5) {
-				parent.addData("CLICKTIME",Date.now() - start);
-				parent.nextEntry();
-				document.getElementById("img").src = img.src.replace("cal5.png", "cal6.png");
-			}
-			if (cal == 6) {
-				parent.addData("CLICKTIME",Date.now() - start);
-				parent.nextEntry();
-				document.getElementById("img").src = img.src.replace("cal6.png", "cal7.png");
-			}
-			if (cal == 7) {
-				parent.addData("CLICKTIME",Date.now() - start);
-				parent.nextEntry();
-				document.getElementById("img").src = img.src.replace("cal7.png", "cal8.png");
-			}
-			if (cal == 8) {
-				parent.addData("CLICKTIME",Date.now() - start);
-				parent.nextEntry();
-				document.getElementById("img").src = img.src.replace("cal8.png", "cal9.png");
-			}
-			if (cal == 9) {
-				parent.addData("CLICKTIME",Date.now() - start);
-				parent.nextEntry();
-				parent.finishHTML();
-			}
-			cal++;
-		});
   //]]></script>
 
   <script>
